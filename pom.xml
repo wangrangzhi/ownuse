@@ -23,7 +23,7 @@
     <modules>
         <module>htmlToPdf</module>
         <module>maillist</module>
-        <module>maillist</module>
+
         <module>processdefinition</module>
 
     </modules>
