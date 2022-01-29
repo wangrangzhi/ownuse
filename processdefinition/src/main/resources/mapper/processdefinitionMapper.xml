@@ -1,228 +1,278 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.github.wangrangzhi.processdefinition.mapper.ProcessdefinitionMapper">
-  <resultMap id="BaseResultMap" type="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="createby" jdbcType="VARCHAR" property="createby" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="processname" jdbcType="VARCHAR" property="processname" />
-    <result column="processtype" jdbcType="VARCHAR" property="processtype" />
-    <result column="remark" jdbcType="VARCHAR" property="remark" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="createby" jdbcType="VARCHAR" property="createby"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="processname" jdbcType="VARCHAR" property="processname"/>
+        <result column="processtype" jdbcType="VARCHAR" property="processtype"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id
+        , createby, createtime, processname, processtype, remark
+    </sql>
+    <select id="selectByExample" parameterType="io.github.wangrangzhi.processdefinition.dao.ProcessdefinitionExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, createby, createtime, processname, processtype, remark
-  </sql>
-  <select id="selectByExample" parameterType="io.github.wangrangzhi.processdefinition.dao.ProcessdefinitionExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from processdefinition
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from processdefinition
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from processdefinition
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="io.github.wangrangzhi.processdefinition.dao.ProcessdefinitionExample">
-    delete from processdefinition
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
-    insert into processdefinition (id, createby, createtime, 
-      processname, processtype, remark
-      )
-    values (#{id,jdbcType=VARCHAR}, #{createby,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{processname,jdbcType=VARCHAR}, #{processtype,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
-    insert into processdefinition
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="createby != null">
-        createby,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-      <if test="processname != null">
-        processname,
-      </if>
-      <if test="processtype != null">
-        processtype,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="createby != null">
-        #{createby,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="processname != null">
-        #{processname,jdbcType=VARCHAR},
-      </if>
-      <if test="processtype != null">
-        #{processtype,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="io.github.wangrangzhi.processdefinition.dao.ProcessdefinitionExample" resultType="java.lang.Integer">
-    select count(*) from processdefinition
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update processdefinition
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createby != null">
+        <include refid="Base_Column_List"/>
+        from processdefinition
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from processdefinition
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from processdefinition
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="io.github.wangrangzhi.processdefinition.dao.ProcessdefinitionExample">
+        delete from processdefinition
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
+        insert into processdefinition (id, createby, createtime,
+                                       processname, processtype, remark)
+        values (#{id,jdbcType=VARCHAR}, #{createby,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+                #{processname,jdbcType=VARCHAR}, #{processtype,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
+        insert into processdefinition
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createby != null">
+                createby,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="processname != null">
+                processname,
+            </if>
+            <if test="processtype != null">
+                processtype,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="createby != null">
+                #{createby,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="processname != null">
+                #{processname,jdbcType=VARCHAR},
+            </if>
+            <if test="processtype != null">
+                #{processtype,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="io.github.wangrangzhi.processdefinition.dao.ProcessdefinitionExample"
+            resultType="java.lang.Integer">
+        select count(*) from processdefinition
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update processdefinition
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createby != null">
+                createby = #{record.createby,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createtime != null">
+                createtime = #{record.createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.processname != null">
+                processname = #{record.processname,jdbcType=VARCHAR},
+            </if>
+            <if test="record.processtype != null">
+                processtype = #{record.processtype,jdbcType=VARCHAR},
+            </if>
+            <if test="record.remark != null">
+                remark = #{record.remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update processdefinition
+        set id = #{record.id,jdbcType=VARCHAR},
         createby = #{record.createby,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createtime != null">
         createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.processname != null">
         processname = #{record.processname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.processtype != null">
         processtype = #{record.processtype,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update processdefinition
-    set id = #{record.id,jdbcType=VARCHAR},
-      createby = #{record.createby,jdbcType=VARCHAR},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      processname = #{record.processname,jdbcType=VARCHAR},
-      processtype = #{record.processtype,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
-    update processdefinition
-    <set>
-      <if test="createby != null">
-        createby = #{createby,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="processname != null">
-        processname = #{processname,jdbcType=VARCHAR},
-      </if>
-      <if test="processtype != null">
-        processtype = #{processtype,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
-    update processdefinition
-    set createby = #{createby,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      processname = #{processname,jdbcType=VARCHAR},
-      processtype = #{processtype,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+        remark = #{record.remark,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
+        update processdefinition
+        <set>
+            <if test="createby != null">
+                createby = #{createby,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="processname != null">
+                processname = #{processname,jdbcType=VARCHAR},
+            </if>
+            <if test="processtype != null">
+                processtype = #{processtype,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="io.github.wangrangzhi.processdefinition.dao.Processdefinition">
+        update processdefinition
+        set createby    = #{createby,jdbcType=VARCHAR},
+            createtime  = #{createtime,jdbcType=TIMESTAMP},
+            processname = #{processname,jdbcType=VARCHAR},
+            processtype = #{processtype,jdbcType=VARCHAR},
+            remark      = #{remark,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+<!--    CREATE DEFINER=`root`@`localhost` PROCEDURE `NewProc`(in arrayStr TEXT(429496729), in delimiter varchar(255), in de varchar(255))-->
+<!--    BEGIN-->
+<!--    DECLARE-->
+<!--    init_data INTEGER DEFAULT 1;-->
+
+<!--    declare i int default 0;-->
+
+<!--    set @arrayLength = 1 + (length(arrayStr) - length(REPLACE(arrayStr,delimiter,'')));-->
+
+<!--    SET autocommit = 0;-->
+
+
+<!--    while i < @arrayLength-->
+
+<!--    DO-->
+
+<!--    set i = i+1;-->
+
+<!--    set @result = REVERSE(SUBSTRING_INDEX(REVERSE(SUBSTRING_INDEX(arrayStr,delimiter,i)),delimiter,1));-->
+
+<!--    INSERT INTO processdefinition ( id, createby, createtime, processname, processtype, remark )-->
+<!--    VALUES-->
+<!--    (-->
+<!--    SUBSTRING_INDEX(SUBSTRING_INDEX(@result,de,1),de,-1),-->
+<!--    SUBSTRING_INDEX(SUBSTRING_INDEX(@result,de,2),de,-1),-->
+<!--    from_unixtime( unix_timestamp( now( ) ) - floor( rand( ) * 800000 ) ),-->
+<!--    CONCAT( '测试', init_data ),-->
+<!--    floor( 1 + rand( ) * 4 ),-->
+<!--    9-->
+<!--    );-->
+<!--    end while;-->
+
+
+
+<!--    SET autocommit = 1;-->
+
+<!--    END-->
+
+
+    <update id="callProc" statementType="CALLABLE" parameterType="java.util.Map">
+        {call NewProc(
+                #{arrayStr}, #{delim}, #{de}
+            ) }
+    </update>
 </mapper>

@@ -1,0 +1,26 @@
+CREATE DEFINER=`root`@`%` PROCEDURE `NewProc`( )
+BEGIN
+DECLARE
+	init_data INTEGER DEFAULT 1;
+
+SET autocommit = 0;
+WHILE
+	init_data <= 3 DO
+INSERT INTO processdefinition ( id, createby, createtime, processname, processtype, remark )
+VALUES
+	(
+		MD5( concat( "psswe", init_data ) ),
+		init_data + 10,
+		from_unixtime( unix_timestamp( now( ) ) - floor( rand( ) * 800000 ) ),
+		CONCAT( '测试', init_data ),
+		floor( 1 + rand( ) * 4 ),
+		init_data
+	);
+
+SET init_data = init_data + 1;
+
+END WHILE;
+
+SET autocommit = 1;
+
+END

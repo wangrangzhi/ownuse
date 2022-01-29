@@ -2,8 +2,10 @@ package io.github.wangrangzhi.processdefinition.mapper;
 
 import io.github.wangrangzhi.processdefinition.dao.Processdefinition;
 import io.github.wangrangzhi.processdefinition.dao.ProcessdefinitionExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 public interface ProcessdefinitionMapper {
     int countByExample(ProcessdefinitionExample example);
@@ -27,4 +29,6 @@ public interface ProcessdefinitionMapper {
     int updateByPrimaryKeySelective(Processdefinition record);
 
     int updateByPrimaryKey(Processdefinition record);
+
+    public int callProc(@Param("arrayStr") String arrayStr, @Param("delim") String delim, @Param("de") String de);
 }

@@ -22,7 +22,8 @@ spring:
         testWhileIdle: true
         timeBetweenEvictionRunsMillis: 6000
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://139.9.239.198:3306/xj_maillist?characterEncoding=utf8
+        #url: jdbc:mysql://139.9.239.198:3306/xj_maillist?characterEncoding=utf8
+        url: jdbc:mysql://127.0.0.1:3306/xj_maillist?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true
         username: root
         ValidationQuery: select * from user
 eureka:
