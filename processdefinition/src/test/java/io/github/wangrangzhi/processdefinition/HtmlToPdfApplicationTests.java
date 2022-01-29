@@ -101,6 +101,7 @@ class HtmlToPdfApplicationTests {
             try {
                 Processdefinition smsSendHistoryDetail = new Processdefinition();
                 pstmt.setString(1, IdUtil.simpleUUID());
+
                 pstmt.setString(2, IdUtil.simpleUUID());
                 pstmt.setTimestamp(3, new Timestamp(new Date().getTime()));
                 pstmt.setString(4, IdUtil.simpleUUID());
