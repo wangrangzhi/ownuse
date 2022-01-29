@@ -1,8 +1,5 @@
-package io.github.wangrangzhi.maillist.controller;
+package io.github.wangrangzhi.processdefinition.controller;
 
-import io.github.wangrangzhi.maillist.dto.controllerUse.InsertUserDto;
-import io.github.wangrangzhi.maillist.dto.controllerUse.ResultDto;
-import io.github.wangrangzhi.maillist.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,20 +42,5 @@ public class UserController {
 
 
     }
-    @Autowired
-    private UserService userService;
 
-    @RequestMapping("/insertuser")
-    public ResultDto insertuser(@RequestBody InsertUserDto insertUserDto) throws Exception {
-
-
-
-        ResultDto resultDto = new ResultDto();
-        resultDto.setCode(20000);
-        resultDto.setData(userService.addUser(insertUserDto));
-
-        return  resultDto;
-
-
-    }
 }

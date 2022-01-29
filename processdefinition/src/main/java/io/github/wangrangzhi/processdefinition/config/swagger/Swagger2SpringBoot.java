@@ -29,9 +29,9 @@ import static java.util.Collections.singletonList;
 import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
 
-@SpringBootApplication
+
 @EnableSwagger2
-@ComponentScan("io.github.wangrangzhi.processdefinition.mapper")
+
 public class Swagger2SpringBoot {
 
 
