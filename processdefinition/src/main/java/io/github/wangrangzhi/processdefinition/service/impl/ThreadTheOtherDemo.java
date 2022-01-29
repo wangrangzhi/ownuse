@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class ThreadTheOtherDemo extends Thread {
+    
     private Thread t;
 
     private String threadName;
