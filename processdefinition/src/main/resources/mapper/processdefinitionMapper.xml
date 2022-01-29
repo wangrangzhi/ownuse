@@ -230,7 +230,6 @@
             remark      = #{remark,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
-
 <!--    CREATE DEFINER=`root`@`localhost` PROCEDURE `NewProc`(in arrayStr TEXT(429496729), in delimiter varchar(255), in de varchar(255))-->
 <!--    BEGIN-->
 <!--    DECLARE-->
