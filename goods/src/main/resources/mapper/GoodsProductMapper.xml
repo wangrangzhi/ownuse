@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.wangrangzhi.goods.mapper.GoodsProductMapper">
+  <resultMap id="BaseResultMap" type="io.github.wangrangzhi.goods.dao.GoodsProduct">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="randomId" jdbcType="VARCHAR" property="randomid" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="sendInTime" jdbcType="TIMESTAMP" property="sendintime" />
+    <result column="goodsId" jdbcType="VARCHAR" property="goodsid" />
+    <result column="userlocation" jdbcType="VARCHAR" property="userlocation" />
+    <result column="goodsType" jdbcType="VARCHAR" property="goodstype" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="store" jdbcType="INTEGER" property="store" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, randomId, userId, sendInTime, goodsId, userlocation, goodsType, remark, store
+  </sql>
+  <select id="selectByExample" parameterType="io.github.wangrangzhi.goods.dao.GoodsProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goodsproduct
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goodsproduct
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from goodsproduct
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="io.github.wangrangzhi.goods.dao.GoodsProductExample">
+    delete from goodsproduct
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="io.github.wangrangzhi.goods.dao.GoodsProduct">
+    insert into goodsproduct (id, randomId, userId, 
+      sendInTime, goodsId, userlocation, 
+      goodsType, remark, store
+      )
+    values (#{id,jdbcType=VARCHAR}, #{randomid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{sendintime,jdbcType=TIMESTAMP}, #{goodsid,jdbcType=VARCHAR}, #{userlocation,jdbcType=VARCHAR}, 
+      #{goodstype,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{store,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="io.github.wangrangzhi.goods.dao.GoodsProduct">
+    insert into goodsproduct
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="randomid != null">
+        randomId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="sendintime != null">
+        sendInTime,
+      </if>
+      <if test="goodsid != null">
+        goodsId,
+      </if>
+      <if test="userlocation != null">
+        userlocation,
+      </if>
+      <if test="goodstype != null">
+        goodsType,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="store != null">
+        store,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="randomid != null">
+        #{randomid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="sendintime != null">
+        #{sendintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsid != null">
+        #{goodsid,jdbcType=VARCHAR},
+      </if>
+      <if test="userlocation != null">
+        #{userlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstype != null">
+        #{goodstype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="store != null">
+        #{store,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="io.github.wangrangzhi.goods.dao.GoodsProductExample" resultType="java.lang.Integer">
+    select count(*) from goodsproduct
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update goodsproduct
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.randomid != null">
+        randomId = #{record.randomid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendintime != null">
+        sendInTime = #{record.sendintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsid != null">
+        goodsId = #{record.goodsid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userlocation != null">
+        userlocation = #{record.userlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodstype != null">
+        goodsType = #{record.goodstype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.store != null">
+        store = #{record.store,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update goodsproduct
+    set id = #{record.id,jdbcType=VARCHAR},
+      randomId = #{record.randomid,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      sendInTime = #{record.sendintime,jdbcType=TIMESTAMP},
+      goodsId = #{record.goodsid,jdbcType=VARCHAR},
+      userlocation = #{record.userlocation,jdbcType=VARCHAR},
+      goodsType = #{record.goodstype,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      store = #{record.store,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="io.github.wangrangzhi.goods.dao.GoodsProduct">
+    update goodsproduct
+    <set>
+      <if test="randomid != null">
+        randomId = #{randomid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="sendintime != null">
+        sendInTime = #{sendintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsid != null">
+        goodsId = #{goodsid,jdbcType=VARCHAR},
+      </if>
+      <if test="userlocation != null">
+        userlocation = #{userlocation,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstype != null">
+        goodsType = #{goodstype,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="store != null">
+        store = #{store,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="io.github.wangrangzhi.goods.dao.GoodsProduct">
+    update goodsproduct
+    set randomId = #{randomid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      sendInTime = #{sendintime,jdbcType=TIMESTAMP},
+      goodsId = #{goodsid,jdbcType=VARCHAR},
+      userlocation = #{userlocation,jdbcType=VARCHAR},
+      goodsType = #{goodstype,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      store = #{store,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

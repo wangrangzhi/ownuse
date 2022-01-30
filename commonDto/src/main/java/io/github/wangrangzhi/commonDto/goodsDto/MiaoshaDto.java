@@ -8,9 +8,11 @@ import java.util.Date;
 @Data
 public class MiaoshaDto {
 
+
+    private String id;
     private String randomId;
-    private String UserId;
+    private String userId;
     private Date sendInTime;
     private String goodsId;
-    private String Userlocation;
+    private String userlocation;
 }
