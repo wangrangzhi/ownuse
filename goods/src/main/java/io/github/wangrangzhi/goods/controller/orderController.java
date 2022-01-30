@@ -1,7 +1,10 @@
 package io.github.wangrangzhi.goods.controller;
 
+import io.github.wangrangzhi.commonDto.goodsDto.BuyingResultDto;
 import io.github.wangrangzhi.commonDto.goodsDto.MiaoshaDto;
+import io.github.wangrangzhi.goods.service.OrderProductService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,16 +15,32 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class orderController {
 
+    @Autowired
+    private OrderProductService orderProductService;
+
 
     @RequestMapping("/miaosha")
-    public String miaosha(@RequestBody MiaoshaDto miaoshaDto ) throws Exception {
+    public BuyingResultDto miaosha(@RequestBody MiaoshaDto miaoshaDto) throws Exception {
 
 
-        log.info("miaoshadto:"+miaoshaDto.toString());
+        // log.info("miaoshadto:"+miaoshaDto.toString());
+        BuyingResultDto buyingResultDto = orderProductService.handlTheUserBuyingAction(miaoshaDto);
 
 
+        return buyingResultDto;
 
-        return null;
+
+    }
+
+    @RequestMapping("/miaosharedis")
+    public BuyingResultDto miaosharedis(@RequestBody MiaoshaDto miaoshaDto) throws Exception {
+
+
+        // log.info("miaoshadto:"+miaoshaDto.toString());
+        BuyingResultDto buyingResultDto = orderProductService.handlTheUserBuyingActionByRedis(miaoshaDto);
+
+
+        return buyingResultDto;
 
 
     }

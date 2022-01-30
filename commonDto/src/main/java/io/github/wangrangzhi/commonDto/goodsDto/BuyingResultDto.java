@@ -1,14 +1,12 @@
 package io.github.wangrangzhi.commonDto.goodsDto;
 
-
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class MiaoshaDto {
+public class BuyingResultDto {
 
-    private String id;
 
     private String buyerid;
 
@@ -16,13 +14,13 @@ public class MiaoshaDto {
 
     private Date buyingtime;
 
-    private String randomId;
-
-
-    private String userlocation;
-
 
     private String goodstype;
 
     private Integer buyingamount;
+
+    private Boolean buyingResult;
+
+    private String message;
+
 }
