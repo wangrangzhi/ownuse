@@ -11,15 +11,20 @@
 	</parent>
 
 	<groupId>io.github.wangrangzhi</groupId>
-	<artifactId>htmlToPdf</artifactId>
+	<artifactId>testAndOkhttp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>htmlToPdf</name>
+	<name>testAndOkhttp</name>
 
 	<description>Demo project for Spring Boot</description>
 	<dependencies>
-
+		<dependency>
+			<groupId>io.github.wangrangzhi</groupId>
+			<artifactId>commonDto</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -36,5 +41,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

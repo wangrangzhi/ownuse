@@ -1,0 +1,9 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:48761/eureka/
+server:
+  port: 40215
+spring:
+  application:
+    name: testAndOkhttp

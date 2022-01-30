@@ -8,33 +8,19 @@
 		<groupId>io.github.wangrangzhi</groupId>
 		<artifactId>ownuseparent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>io.github.wangrangzhi</groupId>
-	<artifactId>htmlToPdf</artifactId>
+	<artifactId>commonDto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>htmlToPdf</name>
+	<name>commonDto</name>
 
-	<description>Demo project for Spring Boot</description>
+	<description>dtomodel</description>
 	<dependencies>
 
 
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+
 
 </project>
