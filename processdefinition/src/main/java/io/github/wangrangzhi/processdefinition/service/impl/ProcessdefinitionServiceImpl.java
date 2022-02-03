@@ -27,6 +27,7 @@ public class ProcessdefinitionServiceImpl implements ProcessdefinitionService {
 
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Override
     public void SERIALIZABLE() {
 
         Processdefinition p = processdefinitionMapper.selectByPrimaryKey(priid);
@@ -37,6 +38,7 @@ public class ProcessdefinitionServiceImpl implements ProcessdefinitionService {
     }
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
+    @Override
     public void REPEATABLE_READ() {
 
         Processdefinition p = processdefinitionMapper.selectByPrimaryKey(priid);
@@ -47,6 +49,7 @@ public class ProcessdefinitionServiceImpl implements ProcessdefinitionService {
     }
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Override
     public void READ_COMMITTED() {
 
         Processdefinition p = processdefinitionMapper.selectByPrimaryKey(priid);
@@ -57,6 +60,7 @@ public class ProcessdefinitionServiceImpl implements ProcessdefinitionService {
     }
 
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
+    @Override
     public void READ_UNCOMMITTED() {
 
         Processdefinition p = processdefinitionMapper.selectByPrimaryKey(priid);

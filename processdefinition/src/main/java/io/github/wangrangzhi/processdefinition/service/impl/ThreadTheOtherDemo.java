@@ -21,7 +21,7 @@ public class ThreadTheOtherDemo extends Thread {
         threadName = this.getName();
 
     }
-
+    @Override
     public void run() {
 
 
@@ -33,7 +33,7 @@ public class ThreadTheOtherDemo extends Thread {
 
 
     }
-
+    @Override
     public void start() {
 
         if (t == null) {

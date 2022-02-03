@@ -17,7 +17,7 @@ public class ThreadMainDemo extends Thread {
         threadName = this.getName();
 
     }
-
+    @Override
     public void run() {
         try {
             Thread.sleep(5000);
@@ -34,7 +34,7 @@ public class ThreadMainDemo extends Thread {
 
 
     }
-
+    @Override
     public void start() {
 
         if (t == null) {
