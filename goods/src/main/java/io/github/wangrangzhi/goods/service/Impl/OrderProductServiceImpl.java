@@ -11,15 +11,18 @@ import io.github.wangrangzhi.goods.dao.OrderProduct;
 import io.github.wangrangzhi.goods.mapper.GoodsProductMapper;
 import io.github.wangrangzhi.goods.mapper.OrderProductMapper;
 import io.github.wangrangzhi.goods.service.OrderProductService;
+import io.swagger.annotations.Scope;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
@@ -89,32 +92,34 @@ public class OrderProductServiceImpl implements OrderProductService {
 
     }
 
+    @Autowired
+    private RedisTemplate<String, String> template;
 
-    public   Jedis jedis = getJedis();
+    // inject the template as ListOperations
+    @Resource(name = "redisTemplate")
+    private ListOperations<String, String> listOps;
 
-    public  Jedis getJedis() {
-        JedisPool pool = new JedisPool("localhost", 6379);
-
-        Jedis jedis = pool.getResource();
-
-
-        return jedis;
-
-    }
-
+//    public void addLink(String userId, URL url) {
+//        listOps.leftPush(userId, url.toExternalForm());
+//    }
 
 
     @Override
+
     public BuyingResultDto handlTheUserBuyingActionByRedis(MiaoshaDto miaoshaDto) {
 
         BuyingResultDto buyingResultDto = new BuyingResultDto();
         String goodsid = miaoshaDto.getGoodsid();
 
-        int left = Integer.parseInt(jedis.get(goodsid));
-        if (left < 1) {
+        ValueOperations<String, String> value = template.opsForValue();
+
+        int left = Integer.parseInt(value.get(goodsid));
+
+
+        if (left < miaoshaDto.getBuyingamount()) {
             buyingResultDto.setBuyingResult(false);
             buyingResultDto.setMessage("商品库存不够");
-            log.info("miaoshaDto:" + miaoshaDto.getBuyingamount() + ",left:" + left);
+            log.info("购买失败，miaoshaDto:" + miaoshaDto.getBuyingamount() + ",left" + left + ",goodsid:" + goodsid);
             return buyingResultDto;
         }
 
@@ -126,12 +131,16 @@ public class OrderProductServiceImpl implements OrderProductService {
 
         GoodsProduct goodsProduct = new GoodsProduct();
 
-        jedis.set(goodsid, String.valueOf(left - miaoshaDto.getBuyingamount()));
+
+        synchronized (this) {
+            value.set(goodsid, String.valueOf(left - miaoshaDto.getBuyingamount()));
 
 
-        int insert = orderProductMapper.insert(orderProduct);
+            int insert = orderProductMapper.insert(orderProduct);
+        }
 
-        log.info("redis:"+goodsid+",left:"+jedis.get(goodsid));
+
+        log.info("购买成功：redis:" + goodsid + ",left:" + value.get(goodsid));
 
         buyingResultDto.setBuyingResult(true);
         buyingResultDto.setMessage("商品购买成功");

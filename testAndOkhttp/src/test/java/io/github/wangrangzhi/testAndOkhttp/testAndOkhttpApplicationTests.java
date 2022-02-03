@@ -73,7 +73,7 @@ class testAndOkhttpApplicationTests {
         miaoshaDto.setRandomId(String.valueOf(RandomUtil.randomInt(1, 5)));
         miaoshaDto.setBuyerid("王喆" + RandomUtil.randomInt(1, 500));
         miaoshaDto.setGoodsid("hello");
-        miaoshaDto.setBuyingamount(RandomUtil.randomInt(1, 30));
+        miaoshaDto.setBuyingamount(RandomUtil.randomInt(1, 100));
 
         List<String> stringList = new ArrayList<>();
         stringList.add("a");
@@ -107,12 +107,12 @@ class testAndOkhttpApplicationTests {
 
     @Test
     public void sny()  throws IOException {
-        ConcurrencyTester tester = ThreadUtil.concurrencyTest(1, () -> {
+        ConcurrencyTester tester = ThreadUtil.concurrencyTest(10, () -> {
             // 测试的逻辑内容
             long delay = 0;
             try {
 
-                for(int i = 0 ;i<50;i++){
+                for(int i = 0 ;i<5;i++){
                     delay = test2();
                 }
 
