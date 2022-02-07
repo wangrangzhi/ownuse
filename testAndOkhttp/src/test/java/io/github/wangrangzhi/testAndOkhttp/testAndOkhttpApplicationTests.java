@@ -10,6 +10,7 @@ import cn.hutool.json.JSONUtil;
 import io.github.wangrangzhi.commonDto.goodsDto.MiaoshaDto;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.jeasy.random.EasyRandom;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -129,5 +130,12 @@ class testAndOkhttpApplicationTests {
 
     }
 
+
+    @Test
+    public void test3(){
+        EasyRandom easyRandom = new EasyRandom();
+        MiaoshaDto person = easyRandom.nextObject(MiaoshaDto.class);
+        log.info(person.toString());
+    }
 
 }
