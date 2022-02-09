@@ -1,33 +1,35 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Other files and folders
+.settings/
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
+/target
+/.idea/
+/sl-jobmgt-sys.iml
+/src/test/
+/src/main/resources/rebel.xml
+/src/main/resources/rebel-remote.xml
+/Fonts/
+/logs/
+/gc/
+/web/
+/LOG_PATH_IS_UNDEFINED/
+/jrebel-classpath-8308.jar
+/jrebel-classpath-1628.jar
+/jrebel-classpath-*.jar
+/identifier.sqlite
+/main.sql
+/test.json

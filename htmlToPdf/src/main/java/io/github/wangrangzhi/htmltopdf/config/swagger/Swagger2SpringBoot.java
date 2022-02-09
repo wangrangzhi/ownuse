@@ -31,7 +31,7 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan("io.github.wangrangzhi.maillist.controller")
+@ComponentScan("io.github.wangrangzhi.htmltopdf.controller")
 public class Swagger2SpringBoot {
 
 

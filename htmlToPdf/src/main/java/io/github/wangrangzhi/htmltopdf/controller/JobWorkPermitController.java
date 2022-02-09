@@ -28,4 +28,13 @@ public class JobWorkPermitController {
 
 
     }
+
+    @RequestMapping("/df")
+    public String download() throws Exception {
+
+        log.info("sedf");
+        return "sdf";
+
+
+    }
 }
