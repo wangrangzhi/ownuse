@@ -12,7 +12,20 @@ public class Solution005 {
 
     public String longestPalindrome(String s) {
 
+        char[] a = s.toCharArray();
 
+        for (int i = 0; i < s.length(); i++) {
+
+            if (i == 0) {
+                continue;
+            }
+
+            if (i == s.length() - 1) {
+                continue;
+            }
+
+
+        }
 
         return null;
     }
